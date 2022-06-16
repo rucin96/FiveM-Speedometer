@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link href="agency-fb.css" rel="stylesheet" type="text/css">
+	<link href="index.css" rel="stylesheet" type="text/css">
+</head>
+<body style="display: none">
+
+<div id="speedometer">
+	<div id="speedometer-parameters">
+		<div id="speedometer-speed">
+			<span id="speedometer-value">0</span>
+			<span id="speedometer-unit">mph</span>
+		</div>
+		<div id="speedometer-divider"></div>
+	</div>
+	<div id="speedometer-rpm-wrapper" class="speedometer-element">
+		<div id="speedometer-rpm"></div>
+	</div>
+	<div id="speedometer-nums" class="speedometer-element"></div>
+	<div id="speedometer-bg" class="speedometer-element"></div>
+</div>
+
+<script type="text/javascript">
+	window.addEventListener("message", function (event) {
+		let data = event.data
+
+		if (data.type === 'enableui') {
+			if (data.enable === true) {
+				document.body.style.display = "block";
+			} else {
+				document.body.style.display = "none";
+			}
+		}
+
+		if (data.type === 'speed') {
+			document.getElementById('speedometer-value').innerText = data.multiplierValue;
+			document.getElementById('speedometer-unit').innerText = data.multiplierType;
+			handleRPM(data.rpm);
+		}
+	});
+
+	function handleRPM(rpm) {
+		const element = document.getElementById('speedometer-rpm');
+		const minValue = 0;
+		const maxValue = 900;
+		const regulator = 0.08;
+		let width = ((rpm - regulator) * maxValue) + minValue;
+
+		element.style.width = width + 'px';
+	}
+</script>
+</body>
+</html>

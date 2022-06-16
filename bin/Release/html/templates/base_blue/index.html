@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="index.css" rel="stylesheet" type="text/css">
+</head>
+<body style="display: none">
+
+<div id="speedometer">
+    <div id="speedometer-shield">
+        <div id="rpm-box">
+            <div class="rpm rpm-green" id="speedometer-rpm-1"></div>
+            <div class="rpm rpm-green" id="speedometer-rpm-2"></div>
+            <div class="rpm rpm-green" id="speedometer-rpm-3"></div>
+            <div class="rpm rpm-orange" id="speedometer-rpm-4"></div>
+            <div class="rpm rpm-red" id="speedometer-rpm-5"></div>
+        </div>
+        <span id="speedometer-parameters">
+                <span id="speedometer-value">0</span>
+                <span id="speedometer-unit">mph</span>
+            </span>
+    </div>
+</div>
+
+<script type="text/javascript">
+    window.addEventListener("message", function (event) {
+        let data = event.data
+
+        if (data.type === 'enableui') {
+            if (data.enable === true) {
+                document.body.style.display = "block";
+            } else {
+                document.body.style.display = "none";
+            }
+        }
+
+        if (data.type === 'speed') {
+            document.getElementById('speedometer-value').innerText = data.multiplierValue;
+            document.getElementById('speedometer-unit').innerText = data.multiplierType;
+            handleRPM(data.rpm);
+        }
+    });
+
+    function handleRPM(rpm) {
+        const elements = document
+            .getElementById('rpm-box')
+            .getElementsByClassName('rpm');
+
+
+        elements[0].style.display = "none";
+        elements[1].style.display = "none";
+        elements[2].style.display = "none";
+        elements[3].style.display = "none";
+        elements[4].style.display = "none";
+
+        if (rpm >= 0.94) {
+            elements[4].style.display = "block";
+        }
+
+        if (rpm >= 0.8) {
+            elements[3].style.display = "block";
+        }
+
+        if (rpm >= 0.6) {
+            elements[2].style.display = "block";
+        }
+
+        if (rpm >= 0.4) {
+            elements[1].style.display = "block";
+        }
+
+        if (rpm >= 0.2) {
+            elements[0].style.display = "block";
+        }
+    }
+</script>
+</body>
+</html>

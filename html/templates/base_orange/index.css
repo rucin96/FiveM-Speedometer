@@ -1,0 +1,83 @@
+@font-face {
+    font-family: 'Agency FB';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Agency FB'), local('AgencyFB-Regular'),
+    url('agency-fb.woff') format('woff'),
+    url('agency-fb.ttf') format('truetype');
+}
+
+#speedometer {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-family: "Helvetica Neue", Helvetica, Arial;
+    font-weight: 400;
+    transform: scale(0.8);
+}
+
+#speedometer #speedometer-bg {
+    background: url('bg.png') no-repeat;
+    z-index: 1;
+}
+
+#speedometer #speedometer-nums {
+    background: url('nums.png') no-repeat;
+    z-index: 2;
+}
+
+#speedometer #speedometer-rpm {
+    background: url('active.png') no-repeat;
+    z-index: 3;
+    width: 920px;
+    height: 270px;
+    position: relative;
+}
+
+.speedometer-element {
+    width: 920px;
+    height: 270px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+#speedometer #speedometer-parameters {
+    position: absolute;
+    bottom: 140px;
+    right: 100px;
+    color: #fff;
+    width: 300px;
+    z-index: 4;
+}
+
+#speedometer #speedometer-parameters #speedometer-speed {
+    position: relative;
+    left: -200px;
+}
+
+#speedometer #speedometer-parameters #speedometer-value {
+    font-family: "Agency FB", Helvetica, Arial;
+    font-size: 80px;
+    -webkit-text-stroke: 3px #fff;
+    text-shadow: 4px 5px 2px #7e3a88;
+    margin-top: 206px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+#speedometer #speedometer-parameters #speedometer-unit {
+    font-size: 30px;
+    color: #fff;
+    clear: both;
+    text-shadow: 2px 2px 2px #7e3a88;
+}
+
+#speedometer #speedometer-parameters #speedometer-divider {
+    background: url('speed_bottom.png') no-repeat;
+    width: 493px;
+    height: 10px;
+    position: relative;
+    right: 240px;
+    bottom: 0;
+}

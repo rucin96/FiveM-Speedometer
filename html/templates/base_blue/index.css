@@ -1,0 +1,51 @@
+#speedometer {
+    position: absolute;
+    bottom: -80px;
+    right: -70px;
+    font-family: "Helvetica Neue", Helvetica, Arial;
+    font-weight: 600;
+    transform: scale(0.6);
+}
+
+#speedometer #speedometer-shield {
+    background: url('speedometer.png') no-repeat center center;
+    width: 500px;
+    height: 500px;
+    text-align: center;
+    position: relative;
+    padding-top: 1px;
+}
+
+#speedometer #speedometer-shield #speedometer-value {
+    font-size: 160px;
+    display: block;
+    margin-top: 150px;
+}
+
+#speedometer #speedometer-shield #speedometer-unit {
+    font-size: 48px;
+    color: #102547;
+}
+
+#speedometer #speedometer-shield #rpm-box {
+    width: 225px;
+    margin: 120px auto;
+}
+
+#speedometer #speedometer-shield #rpm-box .rpm {
+    width: 45px;
+    height: 18px;
+    float: left;
+}
+
+#speedometer #speedometer-shield #rpm-box .rpm-green {
+    background: url('rpm-green.png');
+}
+
+#speedometer #speedometer-shield #rpm-box .rpm-orange {
+    background: url('rpm-orange.png');
+}
+
+#speedometer #speedometer-shield #rpm-box .rpm-red {
+    background: url('rpm-red.png');
+}

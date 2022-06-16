@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="index.css" rel="stylesheet" type="text/css">
+</head>
+<body style="display: none">
+
+<div id="speedometer">
+    <div id="speedometer-shield">
+        <div id="rpm-box">
+            <div id="rpm-arrow"></div>
+        </div>
+        <span id="speedometer-parameters">
+                <span id="speedometer-value">0</span>
+                <span id="speedometer-unit">mph</span>
+            </span>
+    </div>
+</div>
+
+<script type="text/javascript">
+    window.addEventListener("message", function (event) {
+        let data = event.data
+
+        if (data.type === 'enableui') {
+            if (data.enable === true) {
+                document.body.style.display = "block";
+            } else {
+                document.body.style.display = "none";
+            }
+        }
+
+        if (data.type === 'speed') {
+            document.getElementById('speedometer-value').innerText = data.multiplierValue;
+            document.getElementById('speedometer-unit').innerText = data.multiplierType;
+            handleRPM(data.rpm);
+        }
+    });
+
+    function handleRPM(rpm) {
+        const element = document.getElementById('rpm-arrow');
+        const minValue = 252;
+        const maxValue = 470;
+        const regulator = 0.12;
+        let deg = ((rpm - regulator) * 218) + minValue;
+        
+        if (deg < minValue) {
+            deg = minValue;
+        } else if (deg > maxValue) {
+            deg = maxValue;
+        }
+        
+        element.style.transform = 'rotate(' + deg + 'deg)';
+    }
+</script>
+</body>
+</html>
